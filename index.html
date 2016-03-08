@@ -1,0 +1,155 @@
+<html>
+<head>
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+<body>
+
+<div class="entire-container">
+    <h1>By: Catherine Campana</h1>
+    <h2>March 8, 2016</h2>
+
+<div class="container straighten">
+    <div id="popup">
+        <div class="marker" id="fearless"></div>
+        <div class="marker" id="speak now"></div>
+        <div class="marker" id="1989"></div>
+        <div class="marker" id="red"></div>
+        <div class="marker" id="Taylor Swift"></div>
+        <img src="http://i65.tinypic.com/2lo39yf.jpg"/>
+    </div>
+</div>
+
+<div class="textbox">
+  <div class="popuptitle">TAYLOR SWIFT</div> 
+  Taylor Swift is a natural when it comes to creating great music. At the age of 24, she has already won 248 awards. Let's take a look at all of her accomplishments!<br /><br />
+  Click on an a marker and discover what awards and accomplishments her albums have won through out the years!
+</div>
+
+<style>
+.textbox {
+    display: inline-block;
+    width: 30%;
+    padding: 20px;
+    vertical-align: top;
+    background-color: yellow;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    line-height: 1.5em;
+}
+.container{
+    width: 60%;
+    position: relative;
+    display: inline-block;
+}
+.container img {    
+    width: 100%;
+}
+.marker{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: yellow;
+    border: 2px solid white;
+    border-radius: 50%;
+    transition: background-color 0.5s ease;
+    cursor: pointer;
+}
+.marker:hover {
+    background-color: pink;
+}
+#Fearless {
+    top:51%;
+    left: 42%;
+}
+#SpeakNow {
+    top:43%;
+    left: 19%;
+}
+#ninteen-eightynine {
+    top: 44%;
+    right: 36%;
+}
+#Red {
+	top: 86%;
+	right: 65%;
+}
+#Taylor Swift {
+	top: 19%;
+	right: 56%;
+}
+.popuptitle {
+    color: #C72428;
+    font-family:'Roboto', Arial, sans-serif;
+    letter-spacing: 0.01em;
+    font-size:18px; 
+    font-weight:700;
+    clear:both;
+}
+#popup{
+	position:relative;
+}
+.hoverbox{
+	position:absolute;
+	background-color:#fff;
+	padding:0.5em;
+	box-shadow: .px 1px 8px rgba(0,0,0,0.4);
+}
+</style>
+
+
+<script>
+$(document).ready(function(){
+
+var data =
+[{"id":"Fearless","name":"Fearless","description":"This album, 'Fearless' won Taylor 4 Grammy awards, Best Country Album, and Album of the year."},
+{"id":"Speak Now","name":"Speak Now","description":"'Speak Now' sold over 1 million copies in its first week of release. It also became the fastest selling digital album by a female artist."},
+{"id":"1989","name":"1989","description":"1989 was probably Taylor's most successful album so far. Although her others nothing short of amazing. 1989 won Album of the year and Best Pop Vocal Album at the Grammy's. It also won an American Music Award for Favorite Pop/Rock Album and a Billboard Music Award for Top Billboard 200 album."},
+{"id":"Red","name":"Red","description":"When Taylor was just 24 years old, her album 'Red' won Favorite Billboard 200 No. 1 Album at the Billboard Mid-year Awards"}, 
+{"id":"Taylor Swift","name":"Taylor Swift","description":"This was Taylor's first album & at the age of only 20 years old, it quickly became the 2nd best selling country album in history."}];
+
+$('.marker').click(function(e) {
+	$('.textbox').empty();
+	for (var i = 0; i < data.length; i++) {
+		if (this.id == data[i].id) {
+			$('.textbox').append('<div class="popuptitle">' + data[i].name + '</div>' + data[i].description);
+		}//if
+	}//for
+});//click marker
+
+
+var pos, thex, they;
+
+$('.marker').mouseover(function(e) {
+	
+	pos = $('#popup').offset()
+	 thex = event.pageX - pos.left + 10; 
+	 they = event.pageY - pos.top + 0;
+	 
+	 if (thex > $('#popup').width() - 150) { thex = $('#popup').width() - 150 };
+	 if (they > $('#popup').height() - 100) { they = $('#popup').height() - 100 };
+	 
+	 for (var i = 0; i < data.length; i++) {
+		 if (this.id == data[i].id) {
+			 $('#popup').append('<div class="hoverbox" style="top:'+they+'px; left:'+thex+'px;"><div class="popuptitle">'+data[i].name+'</div></div>'); 
+			 console.log(data[i].id);
+			 
+		 }//if
+	 }//for
+	
+	
+	
+});//mouseover
+
+$('.marker').mouseleave(function(){
+	$('.hoverbox').remove();
+});//mouseleave
+
+
+
+
+});//docready
+</script>
+
+</body>
+</html>
